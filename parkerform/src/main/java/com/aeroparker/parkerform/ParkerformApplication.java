@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ParkerformApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ParkerformApplication.class, args);
+		SpringApplication application = new SpringApplication(ParkerformApplication.class);
+        application.setRegisterShutdownHook(false); // Prevents auto shutdown
+        application.run(args);
 	}
 
 }
