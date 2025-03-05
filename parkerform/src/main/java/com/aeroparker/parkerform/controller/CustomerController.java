@@ -2,10 +2,15 @@ package com.aeroparker.parkerform.controller;
 
 import com.aeroparker.parkerform.model.Customer;
 import com.aeroparker.parkerform.repository.CustomerRepository;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.validation.BindingResult;
 
 import java.time.LocalDateTime;
 
@@ -27,7 +32,11 @@ public class CustomerController {
     }
 
     @PostMapping("/register")
-    public String registerCustomer(@ModelAttribute Customer customer) {
+    public String registerCustomer(@Valid @ModelAttribute Customer customer, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("customer", customer);
+            return "registration";
+        }
         customer.setRegistered(LocalDateTime.now());
         customerRepository.save(customer);
         return "redirect:/success";

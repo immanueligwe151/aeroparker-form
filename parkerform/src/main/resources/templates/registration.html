@@ -1,100 +1,101 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Customer Registration</title>
-</head>
-<body>
-    <h2>Customer Registration Form</h2>
-    <form th:action="@{/register}" th:object="${customer}" method="post">
-        <label>Email Address:</label>
-        <input type="email" th:field="*{emailAddress}" required/><br>
 
-        <label>Title:</label>
-        <input type="text" th:field="*{title}" required/><br>
-
-        <label>First Name:</label>
-        <input type="text" th:field="*{firstName}" required/><br>
-
-        <label>Last Name:</label>
-        <input type="text" th:field="*{lastName}" required/><br>
-
-        <label>Address Line 1:</label>
-        <input type="text" th:field="*{addressLine1}" required/><br>
-
-        <label>Address Line 2:</label>
-        <input type="text" th:field="*{addressLine2}"/><br>
-
-        <label>City:</label>
-        <input type="text" th:field="*{city}"/><br>
-
-        <label>Postcode:</label>
-        <input type="text" th:field="*{postcode}" required/><br>
-
-        <label>Phone Number:</label>
-        <input type="text" th:field="*{phoneNumber}"/><br>
-
-        <button type="submit">Register</button>
-    </form>
-</body>
-</html>
-
-
-<!--<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <title>Customer Registration</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
-    <div class="header-div">
-        <img src="https://i.postimg.cc/L52nRB8s/airplane-photo.jpg" alt="cartoon image of airplane"> 
-        <div>
-            <h1 class="header-div-text">AEROPARKER</h1>
-            <h4 class="header-div-text"></h4>
+    <section>
+        <div class="header-div">
+            <img class="header-div-img" src="https://i.postimg.cc/L52nRB8s/airplane-photo.jpg"
+                alt="cartoon image of airplane">
+            <div>
+                <h1 class="header-div-text header-font-size">AEROPARKER</h1>
+                <h4 class="header-div-text header-font-size">Enabling easier and faster airport parking</h4>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <h2>Customer Registration Form</h2>
+    <section>
+        <div class="body-div">
+            <h3>Welcome to the Aeroparker Registration form! This has been creared to make airport parking easier and
+                more
+                straightforward. Being part of the Aeroparker community means that you get access to parking discounts,
+                free
+                parking and priority access to our car parks. Simply fill out your details below to join!</h3>
 
-    <form th:action="@{/register}" method="post" th:object="${customer}">
-        <label for="emailAddress">Email Address:</label>
-        <input type="email" id="emailAddress" name="emailAddress" required>
+            <form id="registration-form" th:action="@{/register}" method="post" th:object="${customer}">
+                <div class="form-input-fields">
+                    <label for="emailAddress">Email Address:</label>
+                    <input type="email" id="emailAddress" name="emailAddress" class="text-input" required>
+                    <span th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}" class="error"></span>
+                </div>
 
-        <label for="title">Title:</label>
-        <select id="title" name="title" required>
-            <option value="Mr">Mr</option>
-            <option value="Mrs">Mrs</option>
-            <option value="Miss">Miss</option>
-            <option value="Ms">Ms</option>
-            <option value="Dr">Dr</option>
-        </select>
+                <div class="form-input-fields">
+                    <label for="title">Title:</label>
+                    <select id="title" name="title" class="text-input" required>
+                        <option value="" disabled selected>Please select title</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Dr">Dr</option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></span>
+                </div>
 
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required>
+                <div class="form-input-fields">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" class="text-input" required>
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></span>
+                </div>
 
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required>
+                <div class="form-input-fields">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" class="text-input" required>
+                </div>
 
-        <label for="addressLine1">Address Line 1:</label>
-        <input type="text" id="addressLine1" name="addressLine1" required>
+                <div class="form-input-fields">
+                    <label for="addressLine1">Address Line 1:</label>
+                    <input type="text" id="addressLine1" name="addressLine1" class="text-input" required>
+                    <span th:if="${#fields.hasErrors('addressLine1')}" th:errors="*{addressLine1}" class="error"></span>
+                </div>
 
-        <label for="addressLine2">Address Line 2 (Optional):</label>
-        <input type="text" id="addressLine2" name="addressLine2">
+                <div class="form-input-fields">
+                    <label for="addressLine2">Address Line 2 (Optional):</label>
+                    <input type="text" id="addressLine2" name="addressLine2" class="text-input">
+                </div>
 
-        <label for="city">City (Optional):</label>
-        <input type="text" id="city" name="city">
+                <div class="form-input-fields">
+                    <label for="city">City (Optional):</label>
+                    <input type="text" id="city" name="city" class="text-input">
+                </div>
 
-        <label for="postcode">Postcode:</label>
-        <input type="text" id="postcode" name="postcode" required>
+                <div class="form-input-fields">
+                    <label for="postcode">Postcode:</label>
+                    <input type="text" id="postcode" name="postcode" class="text-input" required>
+                    <span th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}" class="error"></span>
+                </div>
 
-        <label for="phoneNumber">Phone Number (Optional):</label>
-        <input type="tel" id="phoneNumber" name="phoneNumber">
+                <div class="form-input-fields">
+                    <label for="phoneNumber">Phone Number (Optional):</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" class="text-input">
+                </div>
 
-        <button type="submit">Submit</button>
-    </form>
-
-    <script src="/js/script.js"></script>
+                <button type="submit" id="submit-button">Submit</button>
+            </form>
+            <p id="success-on-form"></p>
+        </div>
+    </section>
 </body>
-</html>-->
+
+</html>
