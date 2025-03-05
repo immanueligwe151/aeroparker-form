@@ -30,7 +30,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 mvn clean install
 mvn spring-boot:run
 ```
-- Then load the web application on `localhost:8080`.
+- Then load the web application on `localhost:8080`. Be sure you're running this from the [`parkerform`](./parkerform/) directory, NOT the [project root directory](./).
 
 
 # Credits
